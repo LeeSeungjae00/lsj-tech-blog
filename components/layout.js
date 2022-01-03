@@ -32,7 +32,7 @@ export default function Layout({ children, home }) {
               priority
               src="/images/profile.jpg"
               className={utilStyles.borderCircle}
-              height={144}
+              height={184}
               width={144}
               alt={name}
             />
@@ -46,8 +46,8 @@ export default function Layout({ children, home }) {
                   priority
                   src="/images/profile.jpg"
                   className={utilStyles.borderCircle}
-                  height={138}
-                  width={108}
+                  height={144}
+                  width={104}
                   alt={name}
                 />
               </a>
