@@ -21,6 +21,7 @@ export default function Post({ postData }) {
   )
 }
 
+//정적 SSG 를 하기 위해선 할 path 를 배열로 만들어야 하는데 그것을 하고 있음
 export async function getStaticPaths() {
   const paths = getAllPostIds()
   return {
