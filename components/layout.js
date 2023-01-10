@@ -9,7 +9,7 @@ const name = 'Lina'
 export const siteTitle = 'Next.js Sample Website'
 
 export default function Layout({ children, home }) {
-  const [theme, setTheme] = useState(() => typeof window !== "undefined" ? localStorage.getItem('theme') === 'dark' ? 'dark' : 'light' : 'light')
+  const [theme, setTheme] = useState('light')
 
   const handleClick = () => {
     const theme = localStorage.getItem('theme')
@@ -21,6 +21,10 @@ export default function Layout({ children, home }) {
       setTheme('dark')
     }
   }
+
+  useEffect(() => {
+    localStorage.getItem('theme') === 'dark' ? setTheme('dark') : setTheme('light')
+  })
 
   useEffect(() => {
     if (theme === 'dark') {

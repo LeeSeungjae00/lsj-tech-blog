@@ -1,118 +1,23 @@
 ---
-title: 'When to Use Static Generation v.s. Server-side Rendering'
+title: 'When to Use Static Generation'
 date: '2020-01-02'
 ---
 
 src
 
-- components
-  - TopMenu.js
-    > TopMenu 컴포넌트 소유
-    >
-    > 상위에 nav bar
-- page
-  - dashboard
-  - detail
-    - detail.js
-      > Detail 컴포넌트 소유
-      >
-      > servceId 에 에 의존하여 값을 가져와 보여주는 주는 컴포넌트
-      >
-      > `detailServiceId` 가 없으면 `/dashboard` 로 리다이렉팅 시킴
-      >
-      > `dashboard.js` 에서 `detailServiceId` 를 store 에 설정하는 것으로 보임
-      >
-      > `dashboardStore` 에서 각종 정보들을 가져와서 화면에 뿌려줌
-    - DetailChart.js
-      > DetailChart 컴포넌트 소유
-      >
-      > `Detail` 컴포넌트에서 호출하며 `Detail` 에서 props 로 전달한 값들을 chart로 생성해서 보여줌
-- dashboard.js
+<CodeBlock>
+  {`
+import React from 'react'
+import SyntaxHighlighter from 'react-syntax-highlighter'
 
-> Dashboard 컴포넌트 소유
->
-> `MainDashboard` 를 감싸고 있는 컴포넌트다. (왜 감쌌는지는 아직 모르겠음)
-
-- **DashboardSotre.js**
-  > Dashboard 에 대한 API 들을 요청할 수 있는 메소드들과 각종 정보들을 갖고 있는 스토어다.
-  >
-  > ### Method
-  >
-  > - `toggleBlackMode()`
-  >
-  > > 블랙모드 화이트 모드 적용을 변경하는 메소드
-  >
-  > - `toggleGaugeMode()`
-  >
-  > > gaugeMode를 토글시키는 메소드 className 을 설정할 때 필요 한듯 보임
-  >
-  > - `toggleRefresh()`
-  >
-  > > refreshId 가 없으면 interval 을 생성시키고 있다면 interval을 clear 하는 메소드 fetchData 를 interval 시킨다.
-  >
-  > - `setRefresh()`
-  >
-  > > interval 값에 따라 설정한 주기로 refreshId 에fetchData 를 interval 시킨다.
-  >
-  > - `unsetRefresh()`
-  >
-  > > refreshId에 있는 interval 을 clear 시킨다
-  >
-  > - `changeMainEndDatetime()`
-  >
-  > > end_datetime 를 변경시키고 interval을 다시 진행한다.
-  >
-  > - `changeDatetimeByUnitrange(date)`
-  >
-  > > startDateTime을 받아온 date로 설정하고 unitRange에서 해당하는 값으로 EndDatetime을 변경하는 메소드
-  >
-  > - `changeDatetimeByUnitrangeOnMain(date)`
-  >
-  > > panel_end_datetime 변경시키는 메소드
-  >
-  > - `changeForm({name , value})`
-  >
-  > > form[name] = value
-  >
-  > - `changeDatetime()`
-  >
-  > > unit 에 저장되어 있는 값을 통해 form.start_datetime 을 변경시킴
-  >
-  > - `fetchData()`
-  >
-  > > /dashboard/service 에서 svc를 get 해온 후에 svcs 에 데이터가 있으면 form.svcs에 저장함
-  > >
-  > > 그리고 `/dashboard/maindata` 에 post 해서 req를 main 에 담고 그 값을 통해서 maindata, mergedCellData, isLoading 을 변경 시킵니다.
-  >
-  > - `fetchCellData(d)`
-  >
-  > > /dashboard/celldata 에 받아온 d 에서 date, sid 와 unit을 조합하여 post한 후에 cellData 를 update 합니다. 업데이트 한 후에 PanelData, PanelLayout 을 생성해서 UI를 만들 데이터를 생성합니다.
-  >
-  > - `generatePanelData()`
-  >
-  > > fetch 해서 받아온 데이터를 통해서 sid, mid, name, type, failCount 를 객체화 시켜서 저장합니다.
-  >
-  > - `clearPanelData()`
-  >
-  > > this.panelData = [];
-  >
-  >     this.lgPanel = [];
-  >     this.mdPanel = [];
-  >     this.smPanel = [];
-  >     this.form.panel_start_datetime = "";
-  >     this.form.panel_end_datetime = "";
-  >     this.panelServiceId = "";
-  >     this.panelServiceTitle = "";
-  >     this.deviceData = {};
-  >
-  > >
-  >
-  > - `updateDeviceData(data)`
-  >
-  > > deviceData 에 전달된 data 를 하나씩 넣는 메소드
-  >
-  > - `setDetailService(id, title)`
-
-```
-const a = test;
-```
+export default function CodeBlock({ children }) {
+  return (
+    <div>
+      <SyntaxHighlighter>
+        {children}
+      </SyntaxHighlighter>
+    </div>
+  )
+}
+  `}
+</CodeBlock>
