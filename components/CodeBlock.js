@@ -1,5 +1,4 @@
 import SyntaxHighlighter from 'react-syntax-highlighter'
-import { rainbow } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 const CopyButton = ({ target }) => {
   const handleCopy = async () => {
@@ -19,7 +18,7 @@ export default function CodeBlock({ children }) {
   return (
     <div className='relative'>
       <CopyButton target={children}></CopyButton>
-      <SyntaxHighlighter style={rainbow}>
+      <SyntaxHighlighter>
         {children}
       </SyntaxHighlighter>
     </div>
