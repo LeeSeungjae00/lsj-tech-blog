@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import Layout from "../../components/layout";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function Write() {
   const idRef = useRef(undefined)
@@ -38,18 +38,24 @@ export default function Write() {
   }
 
   return (
-    <Layout>
+    <>
+      <Head>
+        <title>Write a post</title>
+      </Head>
       <h1>Write a post</h1>
       <form onSubmit={handleSumbit}>
         <input type='text' name="id" placeholder="id" required ref={idRef}></input>
         <br />
+        <br />
         <input type='text' name="title" placeholder="title" required ref={titleRef}></input>
+        <br />
         <br />
         <textarea type='text' name="content" placeholder="content" required ref={contentRef}></textarea>
         <br />
-        <input type="submit" value="Create"></input>
+        <br />
+        <input className="rounded bg-orange-500 px-1" type="submit" value="Create"></input>
       </form>
       {showLink && <Link href={`/post/${idRef.current.value}`}>{titleRef.current.value}</Link>}
-    </Layout>
+    </>
   )
 }

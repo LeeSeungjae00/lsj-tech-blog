@@ -5,8 +5,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import Utterances from './Utterances'
 
-const name = 'Lina'
-export const siteTitle = 'Next.js Sample Website'
+const name = 'LSJ'
 
 export default function Layout({ children, home }) {
   const [theme, setTheme] = useState('light')
@@ -41,21 +40,7 @@ export default function Layout({ children, home }) {
   return (
     <div className='bg-pink-50 dark:bg-black dark:text-gray-50 h-screen'>
       <div className={styles.container}>
-        <Head>
-          <link rel="icon" href="/favicon.ico" />
-          <meta
-            name="description"
-            content="Learn how to build a personal website using Next.js"
-          />
-          <meta
-            property="og:image"
-            content={`https://og-image.vercel.app/${encodeURI(
-              siteTitle
-            )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-          />
-          <meta name="og:title" content={siteTitle} />
-          <meta name="twitter:card" content="summary_large_image" />
-        </Head>
+
         <button className='w-12 px-2' onClick={handleClick}>
           {theme === 'dark' ? "흑" : "백"}
         </button>
