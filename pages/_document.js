@@ -5,13 +5,14 @@ export const siteTitle = 'LSJ-BLOG'
 
 export default function Document() {
   return (
-    <Html>
+    <Html lang="ko">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
           content="Learn how to build a personal website using Next.js"
         />
+        <meta name="robots" content="noindex"></meta>
         <meta
           property="og:image"
           content={`https://og-image.vercel.app/${encodeURI(
@@ -21,7 +22,7 @@ export default function Document() {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <body>
+      <body className='h-screen'>
         <Main />
         <NextScript />
       </body>

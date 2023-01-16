@@ -4,6 +4,7 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import Utterances from './Utterances'
+import Image from 'next/image'
 
 const name = 'LSJ'
 
@@ -38,7 +39,7 @@ export default function Layout({ children, home }) {
 
 
   return (
-    <div className='bg-pink-50 dark:bg-black dark:text-gray-50 h-screen'>
+    <div className='bg-pink-100 dark:bg-black dark:text-gray-50 min-h-screen'>
       <div className={styles.container}>
 
         <button className='w-12 px-2' onClick={handleClick}>
@@ -47,28 +48,28 @@ export default function Layout({ children, home }) {
         <header className={styles.header}>
           {home ? (
             <>
-              {/* <Image
+              <Image
                 priority
                 src="/images/profile.jpg"
                 className={utilStyles.borderCircle}
                 height={184}
                 width={144}
                 alt={name}
-              /> */}
+              />
               <h1 className={utilStyles.heading2Xl}>{name}</h1>
             </>
           ) : (
             <>
               <Link href="/">
 
-                {/* <Image
+                <Image
                   priority
                   src="/images/profile.jpg"
                   className={utilStyles.borderCircle}
                   height={144}
                   width={104}
                   alt={name}
-                /> */}
+                />
 
               </Link>
               <h2 className={utilStyles.headingLg}>

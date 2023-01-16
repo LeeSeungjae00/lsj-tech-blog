@@ -1,19 +1,27 @@
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
 import { useRef, useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import dynamic from "next/dynamic";
 
+const MDEditor = dynamic(
+  () => import("@uiw/react-md-editor").then((mod) => mod.default),
+  { ssr: false }
+);
 export default function Write() {
   const idRef = useRef(undefined)
   const titleRef = useRef(undefined)
   const contentRef = useRef(undefined)
   const [showLink, setShowLink] = useState(false)
+  const [content, setContent] = useState('')
 
   const handleSumbit = (event) => {
     event.preventDefault()
 
     const id = idRef.current.value
     const title = titleRef.current.value
-    const content = contentRef.current.value
+    // const content = contentRef.current.value
 
     if (id && title && content) {
       fetch('/api/post/write', {
@@ -50,7 +58,10 @@ export default function Write() {
         <input type='text' name="title" placeholder="title" required ref={titleRef}></input>
         <br />
         <br />
-        <textarea type='text' name="content" placeholder="content" required ref={contentRef}></textarea>
+        <div data-color-mode="dark">
+          <MDEditor value={content} onChange={setContent} />
+        </div>
+        {/* <textarea type='text' name="content" placeholder="content" required ref={contentRef}></textarea> */}
         <br />
         <br />
         <input className="rounded bg-orange-500 px-1" type="submit" value="Create"></input>
