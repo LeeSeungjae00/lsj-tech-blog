@@ -4,15 +4,17 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 const MDEditor = dynamic(
   () => import("@uiw/react-md-editor").then((mod) => mod.default),
   { ssr: false }
 );
 export default function Write() {
+  const router = useRouter();
+
   const idRef = useRef(undefined)
   const titleRef = useRef(undefined)
-  const contentRef = useRef(undefined)
   const [showLink, setShowLink] = useState(false)
   const [content, setContent] = useState('')
 
@@ -67,6 +69,10 @@ export default function Write() {
         <input className="rounded bg-orange-500 px-1" type="submit" value="Create"></input>
       </form>
       {showLink && <Link href={`/post/${idRef.current.value}`}>{titleRef.current.value}</Link>}
+      <br></br>
+      <br></br>
+      <button className="rounded bg-orange-500 px-1" onClick={() => router.push('posts/ssg-ssr')}>push</button>
+      <button className="rounded bg-yellow-500 px-1" onClick={() => router.replace('posts/ssg-ssr')}>replace</button>
     </>
   )
 }
