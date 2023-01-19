@@ -1,6 +1,6 @@
 import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import dynamic from "next/dynamic";
@@ -12,6 +12,13 @@ const MDEditor = dynamic(
 );
 export default function Write() {
   const router = useRouter();
+
+  useEffect(() => {
+    router.prefetch('/post/ssg-ssr')
+    return () => {
+    }
+  }, [router])
+
 
   const idRef = useRef(undefined)
   const titleRef = useRef(undefined)
@@ -71,8 +78,10 @@ export default function Write() {
       {showLink && <Link href={`/post/${idRef.current.value}`}>{titleRef.current.value}</Link>}
       <br></br>
       <br></br>
-      <button className="rounded bg-orange-500 px-1" onClick={() => router.push('posts/ssg-ssr')}>push</button>
+      <button className="rounded bg-orange-500 px-1" onClick={() => router.push('/post/[id]', '/post/ssg-ssr', { scroll: false })}>push</button>
       <button className="rounded bg-yellow-500 px-1" onClick={() => router.replace('posts/ssg-ssr')}>replace</button>
+      <button className="rounded bg-yellow-500 px-1" onClick={() => router.back()}>back</button>
+      <button className="rounded bg-yellow-500 px-1" onClick={() => router.reload()}>reload</button>
     </>
   )
 }
