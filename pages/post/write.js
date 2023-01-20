@@ -1,6 +1,6 @@
 import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import dynamic from "next/dynamic";
@@ -82,6 +82,15 @@ export default function Write() {
       <button className="rounded bg-yellow-500 px-1" onClick={() => router.replace('posts/ssg-ssr')}>replace</button>
       <button className="rounded bg-yellow-500 px-1" onClick={() => router.back()}>back</button>
       <button className="rounded bg-yellow-500 px-1" onClick={() => router.reload()}>reload</button>
+      <br></br>
+      <br></br>
+      <Link href={"/post/ssg-ssr"} passHref>
+        <LinkButton></LinkButton>
+      </Link>
     </>
   )
 }
+
+const LinkButton = forwardRef(({ href }, ref) => {
+  return <a href={href} ref={ref}>{href} 로</a>
+})
