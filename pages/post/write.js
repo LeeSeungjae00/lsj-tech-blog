@@ -59,7 +59,7 @@ export default function Write() {
       <Head>
         <title>Write a post</title>
       </Head>
-      <h1>Write a post</h1>
+      <h1>Write a post {process.env.customKey}</h1>
       <form onSubmit={handleSumbit}>
         <input type='text' name="id" placeholder="id" required ref={idRef}></input>
         <br />
