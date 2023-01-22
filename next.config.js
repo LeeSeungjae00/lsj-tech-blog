@@ -28,5 +28,8 @@ module.exports = removeImports({
   publicRunTimeConfig: {
     staticFolder: '/static'
   },
-  distDir: 'build'
+  // distDir: 'build',
+  devIndicators: {
+    buildActivityPosition: 'top-right'
+  }
 });
