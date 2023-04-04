@@ -8,6 +8,8 @@
     "export": "next build && next export"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@uiw/react-md-editor": "3.6.0",
     "date-fns": "^2.28.0",
     "gray-matter": "^4.0.3",
