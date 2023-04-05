@@ -85,3 +85,12 @@ module.exports = nextConfig;
 
   export default useDebounce;
   ```
+
+## Auth 를 할 때 auth provider 를 사용하면 쉽게 인증을 구현 할 수 있다.
+
+- Next-auth
+
+## 안쓰는 코드들 확인하고 지우는 것 할 때 을 사용할 수 있다.
+
+- ts-prune 사용
+- "noUnusedLocals": true,"noUnusedParameters": true, ts-config 에 추가하여 사용

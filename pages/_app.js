@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import ErrorBoundary from '@/components/ErrorBoundary'
+import Header from '@/components/Header'
 
 
 //성능 측정을 통해 사용자들이 어떻게 사용하고 있는지 확인 할 수 있음 (로그 수집)
@@ -30,6 +31,7 @@ export default function App({ Component, pageProps }) {
 
   return getLayout(
     <>
+      <Header></Header>
       <div>
         visited {formatDistanceToNow(new Date(visitedTime), {
           addSuffix: true,

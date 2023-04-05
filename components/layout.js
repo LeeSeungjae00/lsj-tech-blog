@@ -39,7 +39,7 @@ export default function Layout({ children, home }) {
 
 
   return (
-    <div className='bg-pink-100 dark:bg-black dark:text-gray-50 min-h-screen'>
+    <div className='bg-slate-100 dark:bg-black dark:text-gray-50 min-h-screen'>
       <div className={styles.container}>
 
         <button className='w-12 px-2' onClick={handleClick}>
