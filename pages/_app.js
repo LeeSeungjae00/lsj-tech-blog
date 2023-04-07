@@ -31,7 +31,6 @@ export default function App({ Component, pageProps }) {
 
   return getLayout(
     <>
-      <Header></Header>
       <div>
         visited {formatDistanceToNow(new Date(visitedTime), {
           addSuffix: true,

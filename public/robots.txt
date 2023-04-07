@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://nextjs-tutorial-2rseatng3-leeseungjae00.vercel.app
+Host: https://lsj-techblog.vercel.app/
 
 # Sitemaps
-Sitemap: https://nextjs-tutorial-2rseatng3-leeseungjae00.vercel.app/sitemap.xml
+Sitemap: https://lsj-techblog.vercel.app/sitemap.xml
