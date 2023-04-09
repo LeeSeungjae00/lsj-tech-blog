@@ -14,7 +14,7 @@ export default function Layout({ children, home }) {
     <div className='bg-slate-100 dark:bg-black dark:text-gray-50 min-h-screen'>
       <div className={styles.container}>
         <Header></Header>
-        <main className='max-w-5xl w-full m-auto pt-12'>{children}</main>
+        <main className='max-w-5xl w-full m-auto pt-14'>{children}</main>
         {!home && (
           <>
             <Utterances />

@@ -1,8 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { SiGithub, SiNotion } from 'react-icons/si'
+import { FiSun, FiMoon } from 'react-icons/fi'
 
-export default function Header({ theme }) {
+export default function Header() {
+  const [theme, setTheme] = useState('light')
+  const [isSticky, setIsSticky] = useState(false)
+
+  useEffect(() => {
+    localStorage.getItem('theme') === 'dark' ? setTheme('dark') : setTheme('light')
+  }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -12,7 +19,17 @@ export default function Header({ theme }) {
     }
   }, [])
 
-  const [isSticky, setIsSticky] = useState(false)
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.querySelector('body').classList.add('dark')
+    } else {
+      document.querySelector('body').classList.remove('dark')
+    }
+
+    return () => {
+    }
+  }, [theme])
+
   const onScroll = useCallback((event) => {
     const { scrollY } = window
     if (scrollY < 52) {
@@ -22,24 +39,39 @@ export default function Header({ theme }) {
     }
   })
 
+  const handleClick = () => {
+    const theme = localStorage.getItem('theme')
+    if (theme === 'dark') {
+      localStorage.setItem('theme', 'light')
+      setTheme('light')
+    } else {
+      localStorage.setItem('theme', 'dark')
+      setTheme('dark')
+    }
+  }
+
 
   return (
     <>
-      <BasicHeader>
+      <BasicHeader theme={theme}>
         <div className="flex justify-between w-full max-w-5xl">
-          <a href="#" className="font-bold text-black">All Post</a>
-          <a href="#" className="font-bold text-black">Category</a>
-          <a href="#" className="font-bold text-black">Contect Me</a>
+          <a href="#" className="font-bold text-black dark:text-slate-50">All Posts</a>
+          <a href="#" className="font-bold text-black dark:text-slate-50">Category</a>
+          <a href="#" className="font-bold text-black dark:text-slate-50">Contect Me</a>
         </div>
       </BasicHeader>
       <StickyHeader isSticky={isSticky}>
         <div className="w-full flex items-center  max-w-5xl">
-          <a href="#" className="mr-auto font-black text-black">📚 LSJ-TECHBLOG</a>
+
+          <a href="#" className="mr-auto font-black text-black dark:text-slate-50">📚 LSJ-TECHBLOG</a>
+          <button className='mr-10'>
+            {theme !== 'dark' ? <FiSun onClick={handleClick}></FiSun> : <FiMoon onClick={handleClick}></FiMoon>}
+          </button>
           <a className='mr-2' href="https://pebble-schooner-b3c.notion.site/d4bd5c8bf33947858bf69051400c62c3">
-            <SiNotion size={'25px'} color='black'></SiNotion>
+            <SiNotion size={'25px'} color={theme !== 'dark' ? 'black' : "#fff"}></SiNotion>
           </a>
           <a href="https://github.com/LeeSeungjae00">
-            <SiGithub size={'25px'} color='black'></SiGithub>
+            <SiGithub size={'25px'} color={theme !== 'dark' ? 'black' : "#fff"}></SiGithub>
           </a>
         </div>
       </StickyHeader>
@@ -55,7 +87,7 @@ const BlackA = styled.a`
 `
 
 const BasicHeader = styled.nav`
-position : absolute;
+  position : absolute;
   top : 0;
   padding: 0 1rem;
   height: 52px;
@@ -64,7 +96,7 @@ position : absolute;
   display : flex;
   align-items : center;
   justify-content : center;
-  background-color : white;
+  background-color : ${props => props.theme === 'dark' ? `#272727` : `#fff`};
 `
 
 const StickyHeader = styled.nav`
