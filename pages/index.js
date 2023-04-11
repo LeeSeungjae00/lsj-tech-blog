@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsData } from '../lib/posts'
+import { getSortedFileSystemPostsData, getSortedNotionPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
 import { siteTitle } from './_document'
@@ -32,7 +32,8 @@ export default function Home({ allPostsData }) {
 }
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
+  const allPostsData = await getSortedNotionPostsData()
+
   return {
     props: {
       allPostsData

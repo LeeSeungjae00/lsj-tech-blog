@@ -81,11 +81,6 @@ export default function Header() {
 }
 
 
-const BlackA = styled.a`
-  color : black;
-  text-transform : uppercase;
-`
-
 const BasicHeader = styled.nav`
   position : absolute;
   top : 0;
