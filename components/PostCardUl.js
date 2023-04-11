@@ -1,0 +1,25 @@
+import React from 'react'
+import Link from 'next/link'
+import Date from '@/components/date'
+
+export default function PostCardUl({ id, icon, title, date, categories }) {
+  console.log(categories)
+  return (
+    <li className='mb-4' key={id}>
+      {icon}
+      <Link href={`/post/${id}`}>
+        <span className='text-black pl-2'>
+          {title}
+        </span>
+      </Link>
+      <br />
+      {categories.map(category => (
+        <span key={category.id} style={{ backgroundColor: category.color }}>{category.name}</span>
+      ))}
+      <br />
+      <small>
+        <Date dateString={date} />
+      </small>
+    </li>
+  )
+}
