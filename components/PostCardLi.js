@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import Date from '@/components/date'
+import CategoryChip from '@/components/CategoryChip'
 
 export default function PostCardUl({ id, icon, title, date, categories }) {
-  console.log(categories)
   return (
     <li className='mb-4' key={id}>
       {icon}
@@ -14,7 +14,7 @@ export default function PostCardUl({ id, icon, title, date, categories }) {
       </Link>
       <br />
       {categories.map(category => (
-        <span key={category.id} style={{ backgroundColor: category.color }}>{category.name}</span>
+        <CategoryChip key={category.id} color={category.color}>{category.name}</CategoryChip>
       ))}
       <br />
       <small>
