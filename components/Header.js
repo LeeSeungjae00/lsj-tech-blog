@@ -91,7 +91,7 @@ const BasicHeader = styled.nav`
   display : flex;
   align-items : center;
   justify-content : center;
-  background-color : ${props => props.theme === 'dark' ? `#272727` : `#fff`};
+  background-color : ${props => props.theme === 'dark' ? `#2e4156` : `#f1f5f9`};
 `
 
 const StickyHeader = styled.nav`

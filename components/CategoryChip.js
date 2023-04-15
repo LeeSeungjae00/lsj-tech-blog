@@ -12,7 +12,13 @@ const chipColorMap = new Map([
   ['brown', '#a3390036'],
 ])
 
-const CategoryChip = styled.span`
+export default function CategoryChip({ color, children }) {
+  return (
+    <Chip color={color} className="dark:text-slate-200">{children}</Chip>
+  )
+}
+
+const Chip = styled.span`
   font-size : 0.7rem;
   margin : 0.1rem;
   padding : 0.2rem;
@@ -20,5 +26,3 @@ const CategoryChip = styled.span`
   font-weight : 500;
   background-color : ${props => chipColorMap.get(props.color)};
 `
-
-export default CategoryChip

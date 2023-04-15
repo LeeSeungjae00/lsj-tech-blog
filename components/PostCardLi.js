@@ -4,21 +4,19 @@ import Date from '@/components/date'
 import CategoryChip from '@/components/CategoryChip'
 
 export default function PostCardUl({ id, icon, title, date, categories }) {
-  console.log(categories)
   return (
-    <li className='mb-4' key={id}>
-      {icon}
+    <li className='mb-4 text-black' key={id}>
       <Link href={`/post/${id}`}>
-        <span className='text-black pl-2'>
-          {title}
-        </span>
+        <button className='dark:text-slate-200 text-black'>
+          {`${icon} ${title}`}
+        </button>
       </Link>
       <br />
       {categories.map(category => (
         <CategoryChip key={category.id} color={category.color}>{category.name}</CategoryChip>
       ))}
       <br />
-      <small>
+      <small className='text-xs text-gray-400 font-extralight'>
         <Date dateString={date} />
       </small>
     </li>

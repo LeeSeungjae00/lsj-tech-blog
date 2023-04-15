@@ -11,7 +11,7 @@ export default function Layout({ children, home }) {
 
 
   return (
-    <div className='bg-slate-100 dark:bg-black dark:text-gray-50 min-h-screen'>
+    <div className='bg-slate-100 dark:bg-gray-800 dark:text-gray-50 min-h-screen'>
       <div className={styles.container}>
         <Header></Header>
         <main className='max-w-5xl w-full m-auto pt-14'>{children}</main>
