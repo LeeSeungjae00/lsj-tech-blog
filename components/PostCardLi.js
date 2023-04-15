@@ -4,6 +4,7 @@ import Date from '@/components/date'
 import CategoryChip from '@/components/CategoryChip'
 
 export default function PostCardUl({ id, icon, title, date, categories }) {
+  console.log(categories)
   return (
     <li className='mb-4' key={id}>
       {icon}

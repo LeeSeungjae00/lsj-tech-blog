@@ -2,7 +2,7 @@ import Head from 'next/head'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedNotionPostsData } from '../lib/posts'
 import { siteTitle } from './_document'
-import PostCardUl from '@/components/PostCardUl'
+import PostCardUl from '@/components/PostCardLi'
 
 export default function Home({ allPostsData }) {
   return (
