@@ -10,6 +10,16 @@ import CodeBlock from '@/components/CodeBlock'
 import dynamic from 'next/dynamic'
 import { siteTitle } from 'pages/_document'
 import { useState } from 'react'
+import styled from "@emotion/styled";
+import ReactMarkdown from 'react-markdown'
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+// import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import remarkGfm from "remark-gfm";
+
+const MarkDownStyle = styled.div`
+  font-size : 0.9rem;
+  line-height : 2.5rem;
+`
 
 
 const EditerMarkdown = dynamic(
@@ -26,7 +36,7 @@ const Button = dynamic(() => import('@/components/Button'), {
 
 //정적 SSG 를 하기 위해선 할 path 를 배열로 만들어야 하는데 그것을 하고 있음
 export async function getStaticPaths() {
-  const paths = getAllPostIds()
+  const paths = await getAllPostIds()
   return {
     paths,
     fallback: false
@@ -57,19 +67,46 @@ const ErrorComponent = () => {
 }
 
 export default function Post({ postData }) {
+  console.log(postData.data)
   return (
     <>
       <Head>
-        <title>{`${postData.title}-${siteTitle}`}</title>
+        {/* <title>{`${postData.title}-${siteTitle}`}</title> */}
+        <title>test</title>
       </Head>
       <ErrorComponent />
       <article className='h-full'>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+        <MarkDownStyle>
+          <ReactMarkdown
+            children={postData.data}
+            remarkPlugins={[remarkGfm]}
+            components={{
+              code({ node, inline, className, children, ...props }) {
+                const match = /language-(\w+)/.exec(className || "");
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    children={String(children).replace(/\n$/, "")}
+                    // style={a11yDark}
+                    language={match[1]}
+                    PreTag="div"
+                    {...props}
+                  />
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                );
+              },
+            }}
+          />
+        </MarkDownStyle>
+
+        {/* <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div className={utilStyles.lightText}>
           <Date dateString={postData.date} />
         </div>
         {postData.contentHtml && <EditerMarkdown source={postData.contentHtml} />}
-        {postData.mdxSource && <MDXRemote {...postData.mdxSource} components={components}></MDXRemote>}
+        {postData.mdxSource && <MDXRemote {...postData.mdxSource} components={components}></MDXRemote>} */}
       </article>
     </>
   )
