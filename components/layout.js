@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import Utterances from './Utterances'
 import Header from './Header'
+import BuyMeACoffee from '@/components/BuyMeACoffee'
 
 const name = 'LSJ'
 
@@ -17,6 +18,7 @@ export default function Layout({ children, home }) {
         <main className='max-w-5xl w-full m-auto pt-14'>{children}</main>
         {!home && (
           <>
+            <BuyMeACoffee></BuyMeACoffee>
             <Utterances />
             <div className={styles.backToHome}>
               <Link href="/">

@@ -9,11 +9,13 @@ import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from 'rehype-raw'
+import { siteTitle } from '../_document'
 
 const MarkDownStyle = styled.div`
   font-size : 0.9rem;
-  line-height : 2.5rem;
+  line-height : 2rem;
 `
+
 
 //정적 SSG 를 하기 위해선 할 path 를 배열로 만들어야 하는데 그것을 하고 있음
 export async function getStaticPaths() {
@@ -39,10 +41,11 @@ export default function Post({ postData }) {
   return (
     <>
       <Head>
-        {/* <title>{`${postData.title}-${siteTitle}`}</title> */}
-        <title>test</title>
+        <title>{`${postData.title}-${siteTitle}`}</title>
       </Head>
       <article className='h-full'>
+        <h1>{`${postData.icon}  ${postData.title}`}</h1>
+        <Date dateString={postData.date}></Date>
         <MarkDownStyle>
           <ReactMarkdown
             children={postData.data}
@@ -63,7 +66,7 @@ export default function Post({ postData }) {
                     {children}
                   </code>
                 );
-              },
+              }
             }}
           />
         </MarkDownStyle>
