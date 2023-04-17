@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { SiGithub, SiNotion } from 'react-icons/si'
 import { FiSun, FiMoon } from 'react-icons/fi'
+import Link from 'next/link'
 
 export default function Header() {
   const [theme, setTheme] = useState('light')
@@ -63,7 +64,7 @@ export default function Header() {
       <StickyHeader isSticky={isSticky}>
         <div className="w-full flex items-center  max-w-5xl">
 
-          <a href="#" className="mr-auto font-black text-black dark:text-slate-50">📚 LSJ-TECHBLOG</a>
+          <Link href="/" ><a className="mr-auto font-black text-black dark:text-slate-50">📚 LSJ-TECHBLOG</a></Link>
           <button className='mr-10'>
             {theme !== 'dark' ? <FiSun onClick={handleClick}></FiSun> : <FiMoon onClick={handleClick}></FiMoon>}
           </button>
